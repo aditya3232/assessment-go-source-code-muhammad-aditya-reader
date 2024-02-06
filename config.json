@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "assessment-go-source-code-muhammad-aditya-writer"
+    "name": "assessment-go-source-muhammad-aditya-writer-customer-group"
   },
   "web": {
     "prefork": false,
@@ -26,7 +26,7 @@
       "servers": "localhost:9092"
     },
     "group": {
-      "id": "assessment-go-source-muhammad-aditya-writer"
+      "id": "assessment-go-source-muhammad-aditya-writer-customer-group"
     }
   }
 }

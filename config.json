@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "assessment-go-source-code-muhammad-aditya"
+    "name": "assessment-go-source-code-muhammad-aditya-writer"
   },
   "web": {
     "prefork": false,
@@ -10,10 +10,10 @@
     "level": 6
   },
   "database": {
-    "username": "root",
-    "password": "root",
+    "username": "postgres",
+    "password": "mysecretpassword",
     "host": "localhost",
-    "port": 3306,
+    "port": 5432,
     "name": "assessment_go_source_code_muhammad_aditya",
     "pool": {
       "idle": 10,
@@ -26,7 +26,7 @@
       "servers": "localhost:9092"
     },
     "group": {
-      "id": "assessment-go-source-muhammad-aditya"
+      "id": "assessment-go-source-muhammad-aditya-writer"
     }
   }
 }

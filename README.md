@@ -65,14 +65,8 @@ migrate -database "postgres://postgres:mysecretpassword@localhost:5432/assessmen
 
 ## Run Application
 
-### Run unit test
+### Run worker server
 
 ```bash
-go test -v ./test/
-```
-
-### Run web server
-
-```bash
-go run cmd/web/main.go
+go run cmd/worker/main.go
 ```

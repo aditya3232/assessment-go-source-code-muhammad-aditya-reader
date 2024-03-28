@@ -1,4 +1,4 @@
-CREATE TABLE customers (
+CREATE TABLE customer_consumers (
     id              VARCHAR(255) NOT NULL PRIMARY KEY,
     national_id     BIGINT       NOT NULL,
     name            VARCHAR(255) NOT NULL,

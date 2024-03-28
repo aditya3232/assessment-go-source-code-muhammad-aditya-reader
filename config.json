@@ -4,17 +4,20 @@
   },
   "web": {
     "prefork": false,
-    "port": 3000
+    "port": 3000,
+    "readTimeout": 10,
+    "writeTimeout": 10,
+    "idleTimeout": 120
   },
   "log": {
     "level": 6
   },
   "database": {
-    "username": "postgres",
-    "password": "mysecretpassword",
+    "username": "root",
+    "password": "root",
     "host": "localhost",
-    "port": 5432,
-    "name": "assessment_go_source_code_muhammad_aditya",
+    "port": 3306,
+    "name": "assessment_go_source_muhammad_aditya_two",
     "pool": {
       "idle": 10,
       "max": 100,

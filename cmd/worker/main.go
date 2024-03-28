@@ -30,6 +30,16 @@ func main() {
 
 	logger.Info("Worker is running")
 
+	// Membuat channel untuk menangkap sinyal SIGINT dan SIGTERM
+	// Sinyal SIGINT dan SIGTERM akan dikirimkan ke channel terminateSignals
+	// Ketika sinyal diterima, maka akan memanggil cancel untuk memberitahu konteks agar berhenti
+	// Kemudian menunggu konteks selesai (semua proses selesai)
+	// Setelah itu, worker akan berhenti
+	// Worker akan berhenti ketika menerima sinyal SIGINT atau SIGTERM
+	// atau ketika semua proses selesai
+	// atau ketika terjadi error
+	// atau ketika terjadi panic
+	// atau ketika worker dihentikan secara paksa
 	terminateSignals := make(chan os.Signal, 1)
 	signal.Notify(terminateSignals, syscall.SIGINT, syscall.SIGTERM)
 

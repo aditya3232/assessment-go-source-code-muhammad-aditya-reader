@@ -3,6 +3,8 @@ package main
 import (
 	"assessment-go-source-code-muhammad-aditya-reader/internal/config"
 	"assessment-go-source-code-muhammad-aditya-reader/internal/delivery/messaging"
+	"assessment-go-source-code-muhammad-aditya-reader/internal/repository"
+	"assessment-go-source-code-muhammad-aditya-reader/internal/usecase"
 	"context"
 	"os"
 	"os/signal"
@@ -13,14 +15,20 @@ import (
 
 func main() {
 	viperConfig := config.NewViper()
+
 	logger := config.NewLogger(viperConfig)
+	db := config.NewDatabase(viperConfig, logger)
+	validate := config.NewValidator(viperConfig)
+
 	logger.Info("Starting worker service")
 
 	ctx, cancel := context.WithCancel(context.Background())
 
 	logger.Info("setup customer reader")
+	customerRepository := repository.NewCustomerConsumerRepository(logger)
+	customerUseCase := usecase.NewCustomerConsumerUseCase(db, logger, validate, customerRepository)
 	customerReader := config.NewKafkaReader(viperConfig, logger, "customers")
-	customerHandler := messaging.NewCustomerReader(logger)
+	customerHandler := messaging.NewCustomerReader(logger, customerUseCase)
 	// Membungkus metode Read dari CustomerReader ke dalam sebuah fungsi yang sesuai dengan ReaderHandler
 	handlerFunc := func(message kafka.Message) error {
 		return customerHandler.Read(&message)

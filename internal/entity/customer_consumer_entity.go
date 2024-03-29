@@ -1,6 +1,6 @@
 package entity
 
-type Customer struct {
+type CustomerConsumer struct {
 	ID            string `gorm:"column:id;primaryKey"`
 	NationalId    int64  `gorm:"column:national_id"`
 	Name          string `gorm:"column:name"`
@@ -9,6 +9,6 @@ type Customer struct {
 	UpdatedAt     int64  `gorm:"column:updated_at;autoUpdateTime:milli"`
 }
 
-func (c *Customer) TableName() string {
-	return "customers"
+func (c *CustomerConsumer) TableName() string {
+	return "customer_consumers"
 }

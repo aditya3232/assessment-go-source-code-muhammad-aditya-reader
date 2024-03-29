@@ -5,8 +5,8 @@ import (
 	"assessment-go-source-code-muhammad-aditya-reader/internal/model"
 )
 
-func CustomerToResponse(customer *entity.Customer) *model.CustomerResponse {
-	return &model.CustomerResponse{
+func CustomerConsumerToResponse(customer *entity.CustomerConsumer) *model.CustomerConsumerResponse {
+	return &model.CustomerConsumerResponse{
 		ID:            customer.ID,
 		NationalId:    customer.NationalId,
 		Name:          customer.Name,

@@ -4,7 +4,7 @@
   },
   "web": {
     "prefork": false,
-    "port": 3000,
+    "port": 3001,
     "readTimeout": 10,
     "writeTimeout": 10,
     "idleTimeout": 120

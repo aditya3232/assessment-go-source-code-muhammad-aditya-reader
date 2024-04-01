@@ -26,7 +26,6 @@ func (c *RouteConfig) recoverPanic(ctx *fiber.Ctx) error {
 			c.Log.WithError(err).Error("Panic occured")
 			ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 				"message": "Internal Server Error",
-				"error":   err.Error(),
 			})
 		}
 	}()

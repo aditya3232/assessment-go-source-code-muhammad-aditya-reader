@@ -15,11 +15,9 @@ import (
 
 func main() {
 	viperConfig := config.NewViper()
-
 	logger := config.NewLogger(viperConfig)
 	db := config.NewDatabase(viperConfig, logger)
 	validate := config.NewValidator(viperConfig)
-
 	logger.Info("Starting worker service")
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -29,12 +27,9 @@ func main() {
 	customerUseCase := usecase.NewCustomerConsumerUseCase(db, logger, validate, customerRepository)
 	customerReader := config.NewKafkaReader(viperConfig, logger, "customers")
 	customerHandler := messaging.NewCustomerReader(logger, customerUseCase)
-	// Membungkus metode Read dari CustomerReader ke dalam sebuah fungsi yang sesuai dengan ReaderHandler
-	handlerFunc := func(message kafka.Message) error {
+	go messaging.ReadTopic(ctx, customerReader, logger, func(message kafka.Message) error {
 		return customerHandler.Read(&message)
-	}
-
-	go messaging.ReadTopic(ctx, customerReader, logger, handlerFunc)
+	})
 
 	logger.Info("Worker is running")
 

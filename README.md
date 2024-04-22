@@ -8,7 +8,7 @@ Ini adalah Layered Architecture kalau dilihat secara struktur partisinya
 
 ## Berikut adalah penjelasan dari setiap layer yang ada di dalam Layered Architecture ini:
 
-1. Sistem eksternal melakukan permintaan (HTTP, gRPC, Messaging, dll) ke delivery, contoh permintaan dari sistem eksternal adalah request HTTP dari client, request gRPC dari client, atau baca pesan dari message broker
+1. Sistem eksternal melakukan permintaan (HTTP, gRPC, Messaging, dll) ke delivery, contoh permintaan dari sistem eksternal adalah request HTTP dari client, request gRPC dari client, baca pesan dari message broker, atau baca cache dari redis
 2. delivery akan mengakses model request untuk setiap request yang masuk, dan memanggil model response, untuk mengembalikan response data dari use case ke sistem eksternal
 3. delivery akan memanggil use case, didalam use case berisi bisnis logic (transaksi, validasi, dll) 
 4. use case membuat instance baru dari entity dan mengisi data entity dari request model

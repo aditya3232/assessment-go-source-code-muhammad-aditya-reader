@@ -27,7 +27,7 @@ func main() {
 	customerUseCase := usecase.NewCustomerConsumerUseCase(db, logger, validate, customerRepository)
 	customerReader := config.NewKafkaReader(viperConfig, logger, "customers")
 	customerHandler := messaging.NewCustomerReader(logger, customerUseCase)
-	go messaging.ReadTopic(ctx, customerReader, logger, func(message kafka.Message) error {
+	go messaging.ReadTopic(ctx, customerReader, logger, func(message kafka.Message) error { // anonymous function as parameter (tanpa nama)
 		return customerHandler.Read(&message)
 	})
 
